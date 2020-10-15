@@ -6,6 +6,6 @@ const firebaseConfig = {
     storageBucket: "hunt-88e93.appspot.com",
     messagingSenderId: "214647691949",
     appId: "1:214647691949:web:3df67fbc3a48f8abf24424"
-  };
+};
 
 export default firebaseConfig;
