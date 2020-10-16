@@ -1,5 +1,5 @@
 import React from 'react';
-import {IonPage, IonContent, IonItem, IonLabel, IonInput, IonRow, IonCol, IonButton} from '@ionic/react';
+import {IonPage, IonLoading, IonContent, IonItem, IonLabel, IonInput, IonRow, IonCol, IonButton} from '@ionic/react';
 import NavHeader from '../components/Header/NavHeader';
 import { toast } from '../utils/toast';
 import useFormValidation from '../hooks/useFormValidation';
@@ -41,6 +41,8 @@ const Forgot = (props) => {
     return (
         <IonPage>
             <NavHeader title ="Forgot Password" />
+            <IonLoading message={"Please Wait"} isOpen ={busy}/>
+
             <IonContent>
                 
                 <IonItem lines="full">
@@ -50,7 +52,7 @@ const Forgot = (props) => {
 
                 <IonRow>
                     <IonCol>
-                        <IonButton type ="submit" color="primary" expand="block" onClick={handleSubmit}>
+                        <IonButton type ="submit" color="primary" expand="block" onClick={handleSubmit} disabled={isSubmitting}>
                         Get Reset Link
                         </IonButton>
                     </IonCol>
