@@ -1,6 +1,5 @@
 import React from 'react';
 import {toast} from "../utils/toast";
-import { validate } from 'json-schema';
 
 function useFormValidation(initialState, validate, action){
     const [values, setValues] = React.useState(initialState);
@@ -15,7 +14,8 @@ function useFormValidation(initialState, validate, action){
                 setValues(initialState);
                 setSubmitting(false);
             } else{
-                toast(Object.values(errors).join(" "));
+                toast("There are " + Object.keys(errors).length +" errors: " + Object.values(errors).join(", "));
+                console.log(Object.keys(errors).length);
                 setSubmitting(false);
             }
         }
@@ -26,7 +26,7 @@ function useFormValidation(initialState, validate, action){
         setValues(previousValues =>({
             ...previousValues,
             [event.target.name]:event.target.value
-        }))
+        }));
     }
 
     function handleSubmit(){
@@ -34,9 +34,9 @@ function useFormValidation(initialState, validate, action){
         setErrors(validationErrors);
         setSubmitting(true);
     }
-    return (
+    return {
         handleSubmit, handleChange, values,setValues, isSubmitting
-    );
+    };
 }
 
 export default useFormValidation;
