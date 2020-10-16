@@ -14,7 +14,16 @@ function useFormValidation(initialState, validate, action){
                 setValues(initialState);
                 setSubmitting(false);
             } else{
-                toast("There are " + Object.keys(errors).length +" errors: " + Object.values(errors).join(", "));
+                let errPrefix = "";
+                let errGramar = "";
+                if(Object.keys(errors).length > 1){
+                    errPrefix = "There are ";
+                    errGramar = " errors: ";
+                }else{
+                    errPrefix = "There is ";
+                    errGramar = " error: "
+                }
+                toast(errPrefix + Object.keys(errors).length + errGramar + Object.values(errors).join(", "));
                 console.log(Object.keys(errors).length);
                 setSubmitting(false);
             }
