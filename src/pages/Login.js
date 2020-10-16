@@ -51,7 +51,7 @@ const Login = props => {
 
                 <IonRow>
                     <IonCol>
-                        <IonButton type ="submit" color="primary" expand="block" onClick={handleSubmit}>
+                        <IonButton type ="submit" color="primary" expand="block" onClick={handleSubmit} disabled={isSubmitting}>
                         Log In
                         </IonButton>
                     </IonCol>
