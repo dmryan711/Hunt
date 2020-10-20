@@ -13,6 +13,62 @@ const ProductList = (props)=> {
     React.useEffect(()=> {
         const unsubscribe = getProducts();
         return () => unsubscribe();
-    },[isTrending]
-    );
-}
+        //eslint-disable-next-line
+    },  [isTrending]);
+
+    function getProducts(){
+        if(isTrending){
+            return firebase.db
+                .collection("products")
+                .orderBy("voteCount","desc")
+                .onSnapshot(handleSnapshot);
+        }
+
+        return firebase.db
+            .collection("products")
+            .orderBy("created","desc")
+            .onSnapshot(handleSnapshot);
+    }
+
+    function handleSnapshot(snapshot){
+        const products = snapshot.docs.map(doc =>{
+            return {id:doc.id,...doc.data()};
+        });
+        setProducts(products)
+    }
+
+    let prevDate = null;
+
+    return products.map((product, index) =>{
+        const result = [
+            <ProductItem
+                key={product.id}
+                showCount = {true}
+                url = {`/product/${product.id}`}
+                index={index+1}
+            />
+        ];
+
+        const currentDate = isToday(product.created)
+        ? "Today"
+        : isYesterday(product.created)
+        ? "Yesterday"
+        :formatDate(product.created, "MMM d");
+
+        if(currentDate !== prevDate && !isTrending){
+            result.unshift(
+                <IonItem color = "medium" lines = "none" key ={currentDate}>
+                    <IonLabel>
+                            <strong>{currentDate}</strong>
+                    </IonLabel>
+                </IonItem>
+            );
+
+            prevDate=currentDate;
+        }
+
+        return result;
+    });
+};
+
+export default ProductList;
