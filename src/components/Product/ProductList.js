@@ -1,6 +1,6 @@
 import React from 'react';
 import firebase from '../../firebase';
-mimport ProductItem from './ProductItem';
+import ProductItem from './ProductItem';
 import formatDate from 'date-fns/format';
 import isYesterday from 'date-fns/isYesterday';
 import isToday from 'date-fns/isToday';
