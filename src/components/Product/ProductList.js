@@ -1,6 +1,6 @@
 import React from 'react';
 import firebase from '../../firebase';
-import ProductItem from './ProductItem';
+mimport ProductItem from './ProductItem';
 import formatDate from 'date-fns/format';
 import isYesterday from 'date-fns/isYesterday';
 import isToday from 'date-fns/isToday';
@@ -45,13 +45,14 @@ const ProductList = (props)=> {
                 key={product.id}
                 showCount = {true}
                 url = {`/product/${product.id}`}
+                product = {product}
                 index={index+1}
             />
         ];
 
         const currentDate = isToday(product.created)
         ? "Today"
-        : isYesterday(product.created)
+        : isYesterday(product.created) 
         ? "Yesterday"
         :formatDate(product.created, "MMM d");
 
