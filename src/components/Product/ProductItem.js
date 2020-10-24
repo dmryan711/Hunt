@@ -28,4 +28,4 @@ const ProductItem = ({product,url,browser}) => {
     )
 };
 
-export default ProductItem;
+export default withRouter(ProductItem);

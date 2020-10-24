@@ -4,6 +4,7 @@ import { IonApp, IonRouterOutlet, IonTabBar, IonTabButton, IonIcon, IonLabel, Io
 import { IonReactRouter } from '@ionic/react-router';
 import {listCircleOutline, trendingUpOutline, searchCircleOutline, createOutline, personCircleOutline} from  'ionicons/icons';
 import Home from './pages/Home';
+import Product from './pages/Product';
 import Trending from './pages/Trending';
 import Search from './pages/Search';
 import Submit from './pages/Submit';
@@ -48,6 +49,7 @@ const App = () => {
           <Route path="/trending" component={Trending}/>
           <Route path="/search" component={Search}/>
           <Route path="/submit" component={Submit}/>
+          <Route path="/product/:productId" component={Product}/>
           <Route path="/profile" component={Profile}/>
           <Route path="/edit-profile" component={EditProfile}/>
           <Route path="/login" component={Login}/>
