@@ -16,7 +16,7 @@ const ProductComment = ({comment, product, setProduct}) => {
     }
 
     function handleEditComment(commentText){
-        const productRef = firebase.db.collection("product").doc(product.id);
+        const productRef = firebase.db.collection("products").doc(product.id);
         productRef.get().then(doc => {
             if(doc.exists){
                 const previousComments = doc.data().comments;
