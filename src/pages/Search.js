@@ -23,7 +23,7 @@ const Search = () => {
 
     function getInitialProducts() {
         firebase.db
-        .collection("products") //angel look at this
+        .collection("products") //angel look at this !
         .get()
         .then((snapshot)=>{
             const products = snapshot.docs.map((doc)=>{
